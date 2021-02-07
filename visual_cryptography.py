@@ -40,12 +40,12 @@ random = SystemRandom()
 #from Crypto.Random import random
 
 if len(sys.argv)!=2:
-	print "This takes one argument; the image to be split."
+	print ("This takes one argument; the image to be split.")
 	exit()
 infile=str(sys.argv[1])
 
 if not os.path.isfile(infile):
-	print "That file does not exist."
+	print ("That file does not exist.")
 	exit()
 
 img = Image.open(infile)
@@ -67,8 +67,9 @@ draw_B = ImageDraw.Draw(out_image_B)
 #There are 6(4 choose 2) possible patterns and it is too late for me to think in binary and do these efficiently
 patterns=((1,1,0,0), (1,0,1,0), (1,0,0,1), (0,1,1,0), (0,1,0,1), (0,0,1,1))
 #Cycle through pixels
-for x in xrange(0, width/2):
-	for y in xrange(0, height/2):
+
+for x in range(0, width//2):
+	for y in range(0, height//2):
 		pixel=img.getpixel((x,y))
 		pat=random.choice(patterns)
 		#A will always get the pattern
@@ -89,4 +90,4 @@ for x in xrange(0, width/2):
 
 out_image_A.save(out_filename_A, 'PNG')
 out_image_B.save(out_filename_B, 'PNG')
-print "Done."
+print ("Done.")
